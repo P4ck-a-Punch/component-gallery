@@ -2,7 +2,7 @@ import React from 'react'
 import { View, StyleSheet, Text } from 'react-native'
 import colors from './Colors'
 import Card from './Card'
-// import { useFonts } from 'expo-font'
+import { TouchableHighlight } from 'react-native-gesture-handler'
 
 const style = StyleSheet.create({
 	exercise_heading: {
@@ -54,13 +54,23 @@ const style = StyleSheet.create({
 		columnGap: 5,
 		marginBottom: 12,
 	},
+	tag_highlight: {
+		borderRadius: 16,
+	},
 })
 
 const Tag = (props: { key: string; text: string }) => {
 	return (
-		<View style={style.tag}>
-			<Text style={style.tag_text}>{props.text}</Text>
-		</View>
+		<TouchableHighlight
+			activeOpacity={0.6}
+			underlayColor={'pink'}
+			onPress={() => true}
+			style={style.tag_highlight}
+		>
+			<View style={style.tag}>
+				<Text style={style.tag_text}>{props.text}</Text>
+			</View>
+		</TouchableHighlight>
 	)
 }
 
