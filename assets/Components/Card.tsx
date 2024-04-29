@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import colors from './Colors'
 
 type CardProps = {
@@ -8,22 +8,10 @@ type CardProps = {
 }
 
 const Card = (props: CardProps) => {
-	return (
-		<View style={cardStyle.card}>
-			<Text style={cardStyle.heading}>{props.heading}</Text>
-			{props.children}
-		</View>
-	)
+	return <View style={cardStyle.card}>{props.children}</View>
 }
 
 const cardStyle = StyleSheet.create({
-	heading: {
-		fontSize: 24,
-		fontFamily: 'IBMPlexSansCondensed-Regular',
-		alignItems: 'flex-start',
-		width: '100%',
-		marginBottom: 20,
-	},
 	card: {
 		width: '85%',
 		alignItems: 'center',
@@ -35,7 +23,6 @@ const cardStyle = StyleSheet.create({
 		borderWidth: 1,
 		borderColor: colors.black,
 	},
-	tag: {},
 })
 
 export default Card
