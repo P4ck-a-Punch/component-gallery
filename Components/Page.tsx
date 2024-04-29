@@ -18,7 +18,7 @@ const PageHeader = (props: { title: string; breadcrumbs: string }) => {
 const Page = (props: PageProps) => {
 	return (
 		<View style={styles.outer}>
-			<PageHeader title={props.title} breadcrumbs='Home > Page' />
+			<PageHeader title={props.title} breadcrumbs='< Home' />
 			{props.children}
 		</View>
 	)
@@ -44,11 +44,11 @@ const styles = StyleSheet.create({
 		fontSize: 32,
 		width: '85%',
 		fontWeight: 'bold',
-		marginBottom: 16,
+		marginBottom: 24,
 	},
 	breadcrumbs: {
 		fontSize: 16,
-		marginBottom: 8,
+		marginBottom: 4,
 	},
 })
 
