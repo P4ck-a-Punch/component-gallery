@@ -6,7 +6,7 @@ import Page from './Components/Page'
 
 export default function App() {
 	return (
-		<Page title='Scheduled Workouts'>
+		<Page title='Schedule'>
 			<ScrollView contentContainerStyle={styles.scroll}>
 				<ExerciseCard
 					name='Arms and Chest'
