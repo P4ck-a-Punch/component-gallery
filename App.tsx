@@ -1,6 +1,6 @@
 import React from 'react'
-import { StyleSheet, Text, ScrollView } from 'react-native'
-import ExerciseCard from './Components/Exercises'
+import { StyleSheet, ScrollView } from 'react-native'
+import { ExerciseCard, ExerciseList } from './Components/Exercises'
 import Page from './Components/Page'
 // import { useFonts } from 'expo-font'
 
@@ -13,14 +13,14 @@ export default function App() {
 					tags={['Biceps', 'Triceps', 'Pecs']}
 					exerciseNames={['Pulldowns', 'Pullups', 'Dips']}
 				>
-					<Text>TestChild</Text>
+					<ExerciseList exerciseNames={['Pulldowns', 'Pullups', 'Dips']} />
 				</ExerciseCard>
 				<ExerciseCard
 					name='Legs'
 					tags={['Quads', 'Hamstrings', 'Glutes']}
 					exerciseNames={['Squats', 'Lunges', 'Deadlifts']}
 				>
-					<Text>TestChild</Text>
+					<ExerciseList exerciseNames={['Squats', 'Lunges', 'Deadlifts']} />
 				</ExerciseCard>
 			</ScrollView>
 		</Page>

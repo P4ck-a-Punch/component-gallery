@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Text } from 'react-native'
+import { View, StyleSheet, Text, ScrollView } from 'react-native'
 import colors from './Colors'
 import Card from './Card'
 // import { useFonts } from 'expo-font'
@@ -14,6 +14,11 @@ const style = StyleSheet.create({
 		width: '100%',
 		marginBottom: 10,
 	},
+	exercise_list: {
+		alignItems: 'flex-start',
+		justifyContent: 'flex-start',
+		width: '100%',
+	},
 	exercise_listitem: {
 		alignItems: 'flex-start',
 		justifyContent: 'flex-start',
@@ -22,7 +27,7 @@ const style = StyleSheet.create({
 	},
 	exercise_listitem_text: {
 		fontWeight: '300',
-		fontFamily: 'IBMPlexSansCondensed-Regular',
+		fontFamily: 'IBMPlexSansCondensed-Light',
 		fontSize: 18,
 	},
 	tag_text: {
@@ -55,6 +60,16 @@ const Tag = (props: { key: string; text: string }) => {
 	return (
 		<View style={style.tag}>
 			<Text style={style.tag_text}>{props.text}</Text>
+		</View>
+	)
+}
+
+const ExerciseList = (props: { exerciseNames: string[] }) => {
+	return (
+		<View style={style.exercise_list}>
+			{props.exerciseNames.map(exerciseName => (
+				<ExerciseListItem key={exerciseName} name={exerciseName} />
+			))}
 		</View>
 	)
 }
@@ -108,12 +123,9 @@ const ExerciseCard = (props: {
 				))}
 			</TagContainer>
 
-			{props.exerciseNames.map(exerciseName => (
-				<ExerciseListItem key={exerciseName} name={exerciseName} />
-			))}
 			{props.children}
 		</Card>
 	)
 }
 
-export default ExerciseCard
+export { ExerciseCard, ExerciseList }
