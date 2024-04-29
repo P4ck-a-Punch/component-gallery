@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, Text, ScrollView } from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
 import colors from './Colors'
 import Card from './Card'
 // import { useFonts } from 'expo-font'
