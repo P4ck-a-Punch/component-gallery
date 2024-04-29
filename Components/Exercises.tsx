@@ -5,7 +5,8 @@ import Card from './Card'
 // import { useFonts } from 'expo-font'
 
 const style = StyleSheet.create({
-	heading: {
+	exercise_heading: {
+		fontWeight: '600',
 		fontSize: 24,
 		fontFamily: 'IBMPlexSansCond-Medium',
 		alignItems: 'flex-start',
@@ -14,11 +15,15 @@ const style = StyleSheet.create({
 		marginBottom: 10,
 	},
 	exercise_listitem: {
-		fontSize: 24,
-		fontFamily: 'IBMPlexSansCond-Medium',
 		alignItems: 'flex-start',
+		justifyContent: 'flex-start',
 		width: '100%',
 		marginBottom: 10,
+	},
+	exercise_listitem_text: {
+		fontWeight: '300',
+		fontFamily: 'IBMPlexSansCondensed-Regular',
+		fontSize: 18,
 	},
 	tag_text: {
 		fontFamily: 'IBMPlexSansCondensed-Regular',
@@ -55,11 +60,15 @@ const Tag = (props: { key: string; text: string }) => {
 }
 
 const ExerciseHeading = (props: { label: string }) => {
-	return <Text style={style.heading}>{props.label}</Text>
+	return <Text style={style.exercise_heading}>{props.label}</Text>
 }
 
-const ExerciseListItem = (props: { key: string }) => {
-	return <Text>{props.key}</Text>
+const ExerciseListItem = (props: { key: string; name: string }) => {
+	return (
+		<View style={style.exercise_listitem}>
+			<Text style={style.exercise_listitem_text}>{props.name}</Text>
+		</View>
+	)
 }
 
 const TagContainer = (props: { children: React.ReactNode }) => {
@@ -99,11 +108,10 @@ const ExerciseCard = (props: {
 				))}
 			</TagContainer>
 
-			{props.children}
-
 			{props.exerciseNames.map(exerciseName => (
-				<ExerciseListItem key={exerciseName} />
+				<ExerciseListItem key={exerciseName} name={exerciseName} />
 			))}
+			{props.children}
 		</Card>
 	)
 }
