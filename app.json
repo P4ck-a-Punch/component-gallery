@@ -23,6 +23,20 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/IBMPlexSansCondensed-Bold.ttf",
+            "./assets/fonts/IBMPlexSansCondensed-Medium.ttf",
+            "./assets/fonts/IBMPlexSansCond-Regular.ttf",
+            "./assets/fonts/IBMPlexSansCondensed-SemiBold.ttf",
+            "./assets/fonts/IBMPlexSansCondensed-Thin.ttf"
+          ]
+        }
+      ]
+    ]
   }
 }
