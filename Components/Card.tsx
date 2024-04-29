@@ -18,7 +18,6 @@ const cardStyle = StyleSheet.create({
 		elevation: 5,
 		backgroundColor: '#fff',
 		padding: 20,
-		margin: 20,
 		borderRadius: 8,
 		borderWidth: 1,
 		borderColor: colors.black,
