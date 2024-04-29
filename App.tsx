@@ -1,12 +1,12 @@
 import React from 'react'
-import { StyleSheet, View, Text, ScrollView } from 'react-native'
+import { StyleSheet, Text, ScrollView } from 'react-native'
 import ExerciseCard from './Components/Exercises'
+import Page from './Components/Page'
 // import { useFonts } from 'expo-font'
 
 export default function App() {
 	return (
-		<View style={styles.container}>
-			<Text>{'Scheduled Workouts'}</Text>
+		<Page title='Scheduled Workouts'>
 			<ScrollView contentContainerStyle={styles.scroll}>
 				<ExerciseCard
 					name='Arms and Chest'
@@ -23,7 +23,7 @@ export default function App() {
 					<Text>TestChild</Text>
 				</ExerciseCard>
 			</ScrollView>
-		</View>
+		</Page>
 	)
 }
 
