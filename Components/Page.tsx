@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 		height: '100%',
 		paddingLeft: 24,
 		paddingRight: 24,
-		paddingTop: 80,
+		paddingTop: 72,
 	},
 	page_header: {
 		display: 'flex',
