@@ -13,7 +13,7 @@ const Card = (props: CardProps) => {
 
 const cardStyle = StyleSheet.create({
 	card: {
-		width: '85%',
+		width: '100%',
 		alignItems: 'center',
 		elevation: 5,
 		backgroundColor: '#fff',
