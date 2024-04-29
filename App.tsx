@@ -39,5 +39,7 @@ const styles = StyleSheet.create({
 		width: '100%',
 		justifyContent: 'flex-start',
 		alignItems: 'center',
+		rowGap: 20,
+		columnGap: 20,
 	},
 })
