@@ -6,7 +6,6 @@ import { TouchableHighlight } from 'react-native-gesture-handler'
 
 const style = StyleSheet.create({
 	exercise_heading: {
-		fontWeight: '600',
 		fontSize: 24,
 		fontFamily: 'IBMPlexSansCond-Medium',
 		alignItems: 'flex-start',
@@ -26,12 +25,11 @@ const style = StyleSheet.create({
 		marginBottom: 10,
 	},
 	exercise_listitem_text: {
-		fontWeight: '300',
-		fontFamily: 'IBMPlexSansCondensed-Light',
+		fontFamily: 'IBMPlexSansCond-Light',
 		fontSize: 18,
 	},
 	tag_text: {
-		fontFamily: 'IBMPlexSansCondensed-Regular',
+		fontFamily: 'IBMPlexSansCond-Regular',
 		fontSize: 12,
 	},
 	tag: {
