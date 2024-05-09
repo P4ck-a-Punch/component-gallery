@@ -1,12 +1,22 @@
 import React from 'react'
+import { useCallback } from 'react'
 import { StyleSheet } from 'react-native'
 import {
 	GestureHandlerRootView,
 	ScrollView,
 } from 'react-native-gesture-handler'
+import { View } from 'react-native'
 import { ExerciseCard, ExerciseList } from './Components/Exercises'
 import Page from './Components/Page'
-// import { useFonts } from 'expo-font'
+import {
+	useFonts,
+	IBMPlexSansCondensed_400Regular,
+	IBMPlexSansCondensed_500Medium,
+	IBMPlexSansCondensed_300Light,
+	IBMPlexSansCondensed_700Bold,
+} from '@expo-google-fonts/ibm-plex-sans-condensed'
+import * as SplashScreen from 'expo-splash-screen'
+import AppLoading from 'expo-app-loading'
 
 const styles = StyleSheet.create({
 	container: {
@@ -95,5 +105,14 @@ const Page1: React.ReactNode = (
 )
 
 export default function App() {
+	const [fontsLoaded, fontError] = useFonts({
+		IBMPlexSansCondensed_400Regular,
+		IBMPlexSansCondensed_500Medium,
+		IBMPlexSansCondensed_300Light,
+	})
+
+	console.log(fontsLoaded)
+	console.log(fontError)
+
 	return Page1
 }

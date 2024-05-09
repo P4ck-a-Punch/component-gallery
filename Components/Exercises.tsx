@@ -7,7 +7,7 @@ import { TouchableHighlight } from 'react-native-gesture-handler'
 const style = StyleSheet.create({
 	exercise_heading: {
 		fontSize: 24,
-		fontFamily: 'IBMPlexSansCond-Medium',
+		fontFamily: 'IBMPlexSansCondensed_500Medium',
 		alignItems: 'flex-start',
 		justifyContent: 'flex-start',
 		width: '100%',
@@ -25,11 +25,11 @@ const style = StyleSheet.create({
 		marginBottom: 10,
 	},
 	exercise_listitem_text: {
-		fontFamily: 'IBMPlexSansCond-Light',
+		fontFamily: 'IBMPlexSansCondensed_300Light',
 		fontSize: 18,
 	},
 	tag_text: {
-		fontFamily: 'IBMPlexSansCond-Regular',
+		fontFamily: 'IBMPlexSansCondensed_400Regular',
 		fontSize: 12,
 	},
 	tag: {
@@ -104,23 +104,6 @@ const ExerciseCard = (props: {
 	children: React.ReactNode
 	exerciseNames: string[]
 }) => {
-	//	useFonts({
-	//		'IBMPlexSansCondensed-Bold': require('../assets/fonts/IBMPlexSansCondensed-Bold.ttf'),
-	//		'IBMPlexSansCondensed-Regular': require('../assets/fonts/IBMPlexSansCondensed-Regular.ttf'),
-	//		'IBMPlexSansCondensed-Medium': require('../assets/fonts/IBMPlexSansCondensed-Medium.ttf'),
-	//		'IBMPlexSansCondensed-SemiBold': require('../assets/fonts/IBMPlexSansCondensed-SemiBold.ttf'),
-	//		'IBMPlexSansCondensed-Light': require('../assets/fonts/IBMPlexSansCondensed-Light.ttf'),
-	//		'IBMPlexSansCondensed-ExtraLight': require('../assets/fonts/IBMPlexSansCondensed-ExtraLight.ttf'),
-	//		'IBMPlexSansCondensed-Italic': require('../assets/fonts/IBMPlexSansCondensed-Italic.ttf'),
-	//		'IBMPlexSansCondensed-Thin': require('../assets/fonts/IBMPlexSansCondensed-Thin.ttf'),
-	//		'IBMPlexSansCondensed-ThinItalic': require('../assets/fonts/IBMPlexSansCondensed-ThinItalic.ttf'),
-	//		'IBMPlexSansCondensed-LightItalic': require('../assets/fonts/IBMPlexSansCondensed-LightItalic.ttf'),
-	//		'IBMPlexSansCondensed-ExtraLightItalic': require('../assets/fonts/IBMPlexSansCondensed-ExtraLightItalic.ttf'),
-	//		'IBMPlexSansCondensed-SemiBoldItalic': require('../assets/fonts/IBMPlexSansCondensed-SemiBoldItalic.ttf'),
-	//		'IBMPlexSansCondensed-MediumItalic': require('../assets/fonts/IBMPlexSansCondensed-MediumItalic.ttf'),
-	//		'IBMPlexSansCondensed-BoldItalic': require('../assets/fonts/IBMPlexSansCondensed-BoldItalic.ttf'),
-	//	})
-
 	return (
 		<Card heading={props.name}>
 			<ExerciseHeading label={props.name} />

@@ -41,12 +41,14 @@ const styles = StyleSheet.create({
 		backgroundColor: 'white',
 	},
 	page_title: {
+		fontFamily: 'IBMPlexSansCondensed_700Bold',
 		fontSize: 36,
 		width: '85%',
 		fontWeight: 'bold',
 		marginBottom: 24,
 	},
 	breadcrumbs: {
+		fontFamily: 'IBMPlexSansCondensed_400Regular',
 		fontSize: 16,
 		marginBottom: 4,
 	},
