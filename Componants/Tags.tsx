@@ -53,15 +53,18 @@ const tagModalStyle = StyleSheet.create({
 		margin: 20,
 		backgroundColor: 'white',
 		borderRadius: 20,
-		padding: 30,
+		paddingTop: 20,
+		paddingBottom: 20,
 		alignItems: 'center',
 		borderColor: '#000',
 		borderWidth: 1,
 		shadowColor: '#000',
 		height: '50%',
+		width: '70%',
 	},
 	modalText: {
 		marginBottom: 15,
+		fontFamily: 'IBMPlexSansCondensed_400Regular',
 		textAlign: 'center',
 	},
 	closeButton: {
@@ -112,11 +115,7 @@ const TagsModal = (props: TagsModalProps) => {
 			<View style={tagModalStyle.centeredView}>
 				<View style={tagModalStyle.modalView}>
 					<ScrollView>
-						{props.tags.map((tag, index) => (
-							<Text key={index} style={tagModalStyle.modalText}>
-								{tag}
-							</Text>
-						))}
+						<TagsNoLimit tags={props.tags} />
 					</ScrollView>
 					<TouchableHighlight
 						activeOpacity={0.6}
@@ -166,6 +165,16 @@ const ShowMoreTag = (props: { key: string; tags: string[] }) => {
 				setModalVisible={setModalVisible}
 			/>
 		</>
+	)
+}
+
+const TagsNoLimit = (props: { tags: string[] }) => {
+	return (
+		<View style={tagStyle.tag_container}>
+			{props.tags.map(tag => (
+				<Tag key={tag} text={tag} />
+			))}
+		</View>
 	)
 }
 
