@@ -4,6 +4,7 @@ import Tags from 'Componants/Tags'
 import { ExerciseLineItem } from 'types/ExerciseLineItem'
 import { UserWorkout } from 'types/UserWorkout'
 import { Text } from 'react-native'
+import ExercisePeekList from './ExercisePeek'
 
 // Note that any single WorkoutCard component does not see
 // a UserWorkoutDetails object. It sees complete ExerciseLineItems
@@ -61,7 +62,7 @@ const WorkoutCard = (props: WorkoutCardProps) => {
 			<Tags tags={getMuscleGroups(props.exercisesPlanned)} />
 			<Tags tags={getEquipment(props.exercisesPlanned)} />
 			<Text style={styles.time}>{timeFromDate(props.workout.date)}</Text>
-			<Text>Display exercises here.{props.exercisesPlanned.length}</Text>
+			<ExercisePeekList exercises={props.exercisesPlanned} />
 		</Card>
 	)
 }

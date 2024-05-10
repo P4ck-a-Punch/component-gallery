@@ -3,27 +3,32 @@ import { View, Text } from 'react-native'
 import React from 'react'
 
 const styles = {
-	container: {
-		marginTop: 10,
+	peek_text: {
+		fontSize: 18,
+		fontFamily: 'IBMPlexSansCondensed_300Light',
+		textAlign: 'left',
+	},
+	peek_list: {
+		flexDirection: 'column',
+		width: '100%',
+		alignItems: 'flex-start',
+		justifyContent: 'flex-start',
 	},
 }
 
 // A list item summarizing an exercise in a workout card.
 const ExercisePeek = ({ exercise }: { exercise: ExerciseLineItem }) => (
 	<View>
-		<Text>{exercise.name}</Text>
-		<Text>
-			{exercise.sets} x {exercise.reps}
-		</Text>
+		<Text style={styles.peek_text}>{exercise.name}</Text>
 	</View>
 )
 
 const ExercisePeekList = ({ exercises }: { exercises: ExerciseLineItem[] }) => (
-	<View style={styles.container}>
+	<View>
 		{exercises.map(exercise => (
 			<ExercisePeek key={exercise.name} exercise={exercise} />
 		))}
 	</View>
 )
 
-export default ExercisePeek
+export default ExercisePeekList
