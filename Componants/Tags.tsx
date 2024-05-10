@@ -9,7 +9,7 @@ import {
 } from 'react-native'
 
 // The maximum number of tags to display before the "show more" tag is shown.
-const MAX_TAGS = 5
+const MAX_TAGS = 3
 
 const tagStyle = StyleSheet.create({
 	tag: {
@@ -36,6 +36,15 @@ const tagStyle = StyleSheet.create({
 		columnGap: 5,
 		marginBottom: 12,
 	},
+	tag_container_no_limit: {
+		width: 'auto',
+		flexDirection: 'row',
+		justifyContent: 'flex-start',
+		alignItems: 'flex-start',
+		flexWrap: 'wrap',
+		rowGap: 5,
+		columnGap: 5,
+	},
 	tag_highlight: {
 		borderRadius: 16,
 	},
@@ -48,18 +57,20 @@ const tagModalStyle = StyleSheet.create({
 		alignItems: 'center',
 		marginTop: 22,
 		marginBottom: 22,
+		width: 'auto',
 	},
 	modalView: {
 		margin: 20,
 		backgroundColor: 'white',
-		borderRadius: 20,
+		borderRadius: 12,
 		paddingTop: 20,
 		paddingBottom: 20,
+		paddingHorizontal: 20,
 		alignItems: 'center',
 		borderColor: '#000',
 		borderWidth: 1,
 		shadowColor: '#000',
-		height: '50%',
+		height: 'auto',
 		width: '70%',
 	},
 	modalText: {
@@ -68,8 +79,9 @@ const tagModalStyle = StyleSheet.create({
 		textAlign: 'center',
 	},
 	closeButton: {
-		borderRadius: 16,
+		borderRadius: 8,
 		padding: 10,
+		marginTop: 20,
 		borderColor: '#000',
 		borderWidth: 1,
 	},
@@ -170,7 +182,7 @@ const ShowMoreTag = (props: { key: string; tags: string[] }) => {
 
 const TagsNoLimit = (props: { tags: string[] }) => {
 	return (
-		<View style={tagStyle.tag_container}>
+		<View style={tagStyle.tag_container_no_limit}>
 			{props.tags.map(tag => (
 				<Tag key={tag} text={tag} />
 			))}
