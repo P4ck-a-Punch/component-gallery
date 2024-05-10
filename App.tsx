@@ -1,10 +1,6 @@
-import Card from 'Componants/Card'
-import Page from 'Componants/Page'
-import Tags from 'Componants/Tags'
-import CardContainer from 'Componants/CardContainer'
 import React from 'react'
-import { Text } from 'react-native'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import WorkoutSchedule from 'pages/NewWorkoutSchedule/WorkoutSchedule'
 import {
 	useFonts,
 	IBMPlexSansCondensed_100Thin,
@@ -48,25 +44,7 @@ const App = () => {
 
 	return (
 		<GestureHandlerRootView>
-			<Page title={'Beans'}>
-				<CardContainer>
-					<Card heading={'Beans'}>
-						<Tags
-							tags={[
-								'Beans',
-								'Legumes',
-								'Protein',
-								'Carrots',
-								'Soup',
-								'Coffee',
-								'Banana',
-								'Apple',
-							]}
-						/>
-						<Text></Text>
-					</Card>
-				</CardContainer>
-			</Page>
+			<WorkoutSchedule />
 		</GestureHandlerRootView>
 	)
 }
