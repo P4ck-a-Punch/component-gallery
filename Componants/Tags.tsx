@@ -4,7 +4,6 @@ import {
 	View,
 	Text,
 	Modal,
-	Button,
 	StyleSheet,
 	ScrollView,
 } from 'react-native'
@@ -48,25 +47,28 @@ const tagModalStyle = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		marginTop: 22,
+		marginBottom: 22,
 	},
 	modalView: {
 		margin: 20,
 		backgroundColor: 'white',
 		borderRadius: 20,
-		padding: 35,
+		padding: 30,
 		alignItems: 'center',
+		borderColor: '#000',
+		borderWidth: 1,
 		shadowColor: '#000',
-		shadowOffset: {
-			width: 0,
-			height: 2,
-		},
-		shadowOpacity: 0.25,
-		shadowRadius: 4,
-		elevation: 5,
+		height: '50%',
 	},
 	modalText: {
 		marginBottom: 15,
 		textAlign: 'center',
+	},
+	closeButton: {
+		borderRadius: 16,
+		padding: 10,
+		borderColor: '#000',
+		borderWidth: 1,
 	},
 })
 
@@ -116,7 +118,14 @@ const TagsModal = (props: TagsModalProps) => {
 							</Text>
 						))}
 					</ScrollView>
-					<Button title='Close' onPress={() => props.setModalVisible(false)} />
+					<TouchableHighlight
+						activeOpacity={0.6}
+						underlayColor={'pink'}
+						onPress={() => props.setModalVisible(false)}
+						style={tagModalStyle.closeButton}
+					>
+						<Text>Close</Text>
+					</TouchableHighlight>
 				</View>
 			</View>
 		</Modal>
