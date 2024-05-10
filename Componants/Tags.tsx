@@ -9,6 +9,9 @@ import {
 	ScrollView,
 } from 'react-native'
 
+// The maximum number of tags to display before the "show more" tag is shown.
+const MAX_TAGS = 15
+
 const tagStyle = StyleSheet.create({
 	tag: {
 		backgroundColor: '#fff',
@@ -156,12 +159,6 @@ const ShowMoreTag = (props: { key: string; tags: string[] }) => {
 		</>
 	)
 }
-
-/** A "special tag" component that is used when the number of tags
- * exceeds the maximum number of tags to display. Opens a scrollable
- * modal containing all of the tags. */
-
-const MAX_TAGS = 15
 
 /**
  * Organizes a list of tags into a horizontal flexbox container that
