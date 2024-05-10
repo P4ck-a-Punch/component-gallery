@@ -1,6 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import { TouchableHighlight } from 'react-native-gesture-handler'
+import { Button } from 'react-native'
 import { IBMPlexSansCondensed_500Medium } from '@expo-google-fonts/ibm-plex-sans-condensed'
 import { useFonts } from 'expo-font'
 import AppLoading from 'expo-app-loading'
@@ -25,6 +26,7 @@ const Card = (props: CardProps) => {
 			underlayColor={'pink'}
 			onPress={() => true}
 			style={cardStyle.highlight}
+			disallowInterruption={true}
 		>
 			<View style={cardStyle.card}>
 				<Text style={cardStyle.heading}>{props.heading}</Text>

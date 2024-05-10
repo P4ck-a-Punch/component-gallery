@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 
 // The maximum number of tags to display before the "show more" tag is shown.
-const MAX_TAGS = 15
+const MAX_TAGS = 5
 
 const tagStyle = StyleSheet.create({
 	tag: {
