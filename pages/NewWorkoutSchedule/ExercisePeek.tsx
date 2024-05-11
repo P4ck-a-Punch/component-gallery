@@ -6,6 +6,7 @@ const styles = {
 	peek_text: {
 		fontSize: 18,
 		fontFamily: 'IBMPlexSansCondensed_300Light',
+		width: '100%',
 		textAlign: 'left',
 	},
 	peek_list: {

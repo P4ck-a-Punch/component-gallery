@@ -46,7 +46,7 @@ const cardStyle = StyleSheet.create({
 	},
 	card: {
 		width: '100%',
-		alignItems: 'center',
+		alignItems: 'flex-start',
 		elevation: 5,
 		backgroundColor: '#fff',
 		padding: 20,
