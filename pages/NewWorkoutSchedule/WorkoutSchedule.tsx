@@ -4,7 +4,7 @@ import CardContainer from 'Componants/CardContainer'
 import WorkoutCard from './WorkoutCard'
 import { UserWorkout } from 'types/UserWorkout'
 import { getExerciseLineItems, getWorkouts } from './WorkoutData'
-import { View } from 'react-native'
+import { View, Vibration } from 'react-native'
 import WheelPicker from 'react-native-wheely'
 
 // Information about the user's scheduled workouts, across a cache
@@ -38,7 +38,6 @@ const selectorStyles = {
 	},
 	selectorIndicator: {
 		// backgroundColor: 'transparent',
-		alignSelf: 'center',
 	},
 	itemTextStyle: {
 		transform: [{ rotate: '90deg' }],
@@ -69,6 +68,7 @@ const DateSelector = () => {
 					itemTextStyle={selectorStyles.itemTextStyle}
 					scaleFunction={x => 1 / (1 + Math.exp(0.5 * (x - 6)))}
 					containerStyle={selectorStyles.selectorContainer}
+					decelerationRate={0.3}
 				/>
 			</View>
 		</View>
