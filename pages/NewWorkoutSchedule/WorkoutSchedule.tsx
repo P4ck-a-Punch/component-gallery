@@ -36,9 +36,7 @@ const selectorStyles = {
 		transform: [{ rotate: '270deg' }],
 		width: 49,
 	},
-	selectorIndicator: {
-		// backgroundColor: 'transparent',
-	},
+	selectorIndicator: {},
 	itemTextStyle: {
 		transform: [{ rotate: '90deg' }],
 		fontSize: 20,
@@ -68,7 +66,7 @@ const DateSelector = () => {
 					itemTextStyle={selectorStyles.itemTextStyle}
 					scaleFunction={x => 1 / (1 + Math.exp(0.5 * (x - 6)))}
 					containerStyle={selectorStyles.selectorContainer}
-					decelerationRate={0.3}
+					decelerationRate='fast'
 				/>
 			</View>
 		</View>
