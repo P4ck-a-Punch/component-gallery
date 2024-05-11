@@ -6,7 +6,6 @@ const styles = {
 	peek_text: {
 		fontSize: 18,
 		fontFamily: 'IBMPlexSansCondensed_300Light',
-		width: '100%',
 	},
 	peek_list: {
 		flexDirection: 'column',
