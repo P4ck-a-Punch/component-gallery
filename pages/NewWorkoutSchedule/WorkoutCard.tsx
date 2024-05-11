@@ -61,7 +61,6 @@ const WorkoutCard = (props: WorkoutCardProps) => {
 		<Card heading={props.workout.name}>
 			<Tags tags={getMuscleGroups(props.exercisesPlanned)} />
 			<Tags tags={getEquipment(props.exercisesPlanned)} />
-			<Text style={styles.time}>{timeFromDate(props.workout.date)}</Text>
 			<ExercisePeekList exercises={props.exercisesPlanned} />
 		</Card>
 	)
