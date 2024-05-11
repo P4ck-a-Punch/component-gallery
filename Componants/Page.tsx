@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
 		fontFamily: 'IBMPlexSansCondensed_700Bold',
 		fontSize: 36,
 		fontWeight: 'bold',
-		marginBottom: 24,
 		width: '100%',
 	},
 	breadcrumbs: {
