@@ -4,7 +4,7 @@ import CardContainer from 'Componants/CardContainer'
 import WorkoutCard from './WorkoutCard'
 import { UserWorkout } from 'types/UserWorkout'
 import { getExerciseLineItems, getWorkouts } from './WorkoutData'
-import { View } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import WheelPicker from 'react-native-wheely'
 
 // Information about the user's scheduled workouts, across a cache
@@ -25,12 +25,12 @@ const getWorkoutCards = (workoutData: UserWorkout[]): JSX.Element[] => {
 	})
 }
 
-const selectorStyles = {
-	selectorRoot: {
+const selectorStyles = StyleSheet.create({
+	wheelRoot: {
 		alignItems: 'center',
 		justifyContent: 'center',
-		height: '10%',
-		width: '100%',
+		height: '100%',
+		width: '70%',
 	},
 	rotate: {
 		transform: [{ rotate: '270deg' }],
@@ -43,7 +43,22 @@ const selectorStyles = {
 		fontFamily: 'IBMPlexSansCondensed_300Light',
 	},
 	selectorContainer: {},
-}
+	selectorRoot: {
+		flexDirection: 'row',
+		height: '7%',
+		paddingHorizontal: 24,
+		alignItems: 'center',
+		justifyContent: 'flex-start',
+		width: '100%',
+		paddingBottom: 12,
+	},
+	dateText: {
+		fontSize: 24,
+		fontFamily: 'IBMPlexSansCondensed_300Light',
+		textAlignVertical: 'center',
+		width: 'auto',
+	},
+})
 
 // A continuous date selecter. Holds an array that is the days-in-a-year sequence
 // and keeps track of the month. Once the picker wraps around the array, notes
@@ -51,25 +66,26 @@ const selectorStyles = {
 const DateSelector = () => {
 	const testArray = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
 
-	const [selectedIndex, setSelectedIndex] = useState(0)
+	const [selectedIndex, setSelectedIndex] = useState(testArray.length / 2)
 
 	return (
-		// @ts-expect-error TS claims that no overload matches the call, but
-		// the style entries that cause this to happen are actually applied.
 		<View style={selectorStyles.selectorRoot}>
-			<View style={selectorStyles.rotate}>
-				<WheelPicker
-					selectedIndex={selectedIndex}
-					options={testArray.map(item => item.toString())}
-					onChange={index => {
-						setSelectedIndex(index)
-					}}
-					selectedIndicatorStyle={selectorStyles.selectorIndicator}
-					itemTextStyle={selectorStyles.itemTextStyle}
-					scaleFunction={x => 1 / (1 + Math.exp(0.5 * (x - 6)))}
-					containerStyle={selectorStyles.selectorContainer}
-					decelerationRate='fast'
-				/>
+			<Text style={selectorStyles.dateText}>August 2022</Text>
+			<View style={selectorStyles.wheelRoot}>
+				<View style={selectorStyles.rotate}>
+					<WheelPicker
+						selectedIndex={selectedIndex}
+						options={testArray.map(item => item.toString())}
+						onChange={index => {
+							setSelectedIndex(index)
+						}}
+						selectedIndicatorStyle={selectorStyles.selectorIndicator}
+						itemTextStyle={selectorStyles.itemTextStyle}
+						scaleFunction={x => 1 / (1 + Math.exp(0.5 * (x - 6)))}
+						containerStyle={selectorStyles.selectorContainer}
+						decelerationRate='fast'
+					/>
+				</View>
 			</View>
 		</View>
 	)
