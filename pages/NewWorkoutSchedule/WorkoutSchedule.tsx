@@ -4,7 +4,7 @@ import CardContainer from 'Componants/CardContainer'
 import WorkoutCard from './WorkoutCard'
 import { UserWorkout } from 'types/UserWorkout'
 import { getExerciseLineItems, getWorkouts } from './WorkoutData'
-import { View } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 import WheelPicker from 'react-native-wheely'
 
 // Information about the user's scheduled workouts, across a cache
@@ -25,12 +25,12 @@ const getWorkoutCards = (workoutData: UserWorkout[]): JSX.Element[] => {
 	})
 }
 
-const selectorStyles = {
-	selectorRoot: {
+const selectorStyles = StyleSheet.create({
+	wheelRoot: {
 		alignItems: 'center',
 		justifyContent: 'center',
-		height: '10%',
-		width: '100%',
+		height: '100%',
+		width: '65%',
 	},
 	rotate: {
 		transform: [{ rotate: '270deg' }],
@@ -42,34 +42,91 @@ const selectorStyles = {
 		fontSize: 20,
 		fontFamily: 'IBMPlexSansCondensed_300Light',
 	},
-	selectorContainer: {},
+	selectorContainer: {
+		width: '100%',
+	},
+	selectorRoot: {
+		flexDirection: 'row',
+		height: '7%',
+		paddingHorizontal: 24,
+		alignItems: 'center',
+		justifyContent: 'flex-start',
+		width: '100%',
+		paddingBottom: 12,
+	},
+	dateText: {
+		fontSize: 26,
+		fontFamily: 'IBMPlexSansCondensed_300Light',
+		textAlignVertical: 'center',
+		width: '35%',
+	},
+})
+
+// Scale of dates in the wheel as a function of (unsigned) distance from the center.
+// See https://www.desmos.com/calculator/u0m44qh7xk for a visualization.
+//
+// NOTE: you have to reload the app via the Expo terminal (press r) to see effects
+// of these changes.
+const dateWheelScaleFunction = (x: number) => {
+	const a = 1.6
+	const b = 5.5
+	return 1 / (1 + Math.exp(a * (x - b)))
 }
+
+interface DateSelectorProps {
+	date: Date
+	setDate: (date: Date) => void
+}
+
+const daysInMonth = (year: number, month: number) =>
+	new Date(year, month, 0).getDate()
 
 // A continuous date selecter. Holds an array that is the days-in-a-year sequence
 // and keeps track of the month. Once the picker wraps around the array, notes
 // the year change.
-const DateSelector = () => {
-	const testArray = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
+const DateSelector: React.FC<DateSelectorProps> = (
+	props: DateSelectorProps,
+) => {
+	const dateArray = Array.from(
+		{
+			length: daysInMonth(props.date.getFullYear(), props.date.getMonth() + 1),
+		},
+		(_, i) => i + 1,
+	)
 
-	const [selectedIndex, setSelectedIndex] = useState(0)
+	const [selectedIndex, setSelectedIndex] = useState(dateArray.length / 2)
 
 	return (
-		// @ts-expect-error TS claims that no overload matches the call, but
-		// the style entries that cause this to happen are actually applied.
 		<View style={selectorStyles.selectorRoot}>
-			<View style={selectorStyles.rotate}>
-				<WheelPicker
-					selectedIndex={selectedIndex}
-					options={testArray.map(item => item.toString())}
-					onChange={index => {
-						setSelectedIndex(index)
-					}}
-					selectedIndicatorStyle={selectorStyles.selectorIndicator}
-					itemTextStyle={selectorStyles.itemTextStyle}
-					scaleFunction={x => 1 / (1 + Math.exp(0.5 * (x - 6)))}
-					containerStyle={selectorStyles.selectorContainer}
-					decelerationRate='fast'
-				/>
+			<Text style={selectorStyles.dateText}>
+				{props.date.toLocaleDateString('en-US', {
+					month: 'long',
+					year: 'numeric',
+					day: 'numeric',
+				})}
+			</Text>
+			<View style={selectorStyles.wheelRoot}>
+				<View style={selectorStyles.rotate}>
+					<WheelPicker
+						selectedIndex={selectedIndex}
+						options={dateArray.map(item => item.toString())}
+						onChange={index => {
+							setSelectedIndex(index)
+							props.setDate(
+								new Date(
+									props.date.getFullYear(),
+									props.date.getMonth(),
+									dateArray[index],
+								),
+							)
+						}}
+						selectedIndicatorStyle={selectorStyles.selectorIndicator}
+						itemTextStyle={selectorStyles.itemTextStyle}
+						scaleFunction={dateWheelScaleFunction}
+						containerStyle={selectorStyles.selectorContainer}
+						decelerationRate='fast'
+					/>
+				</View>
 			</View>
 		</View>
 	)
@@ -85,9 +142,11 @@ const WorkoutSchedule: React.FC = () => {
 	// TODO: to silence unused warnings.
 	console.log(workouts)
 
+	const [date, setDate] = useState(new Date())
+
 	return (
 		<Page title={'Schedule'}>
-			<DateSelector />
+			<DateSelector date={date} setDate={setDate} />
 			<CardContainer>
 				{getWorkoutCards(getThisDateWorkouts(workouts))}
 			</CardContainer>
