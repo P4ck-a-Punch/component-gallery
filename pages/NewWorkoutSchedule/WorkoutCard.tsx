@@ -20,7 +20,7 @@ type WorkoutCardProps = {
 const styles = StyleSheet.create({
 	time: {
 		fontSize: 16,
-		marginBottom: 8,
+		marginBottom: 4,
 		fontFamily: 'IBMPlexSansCondensed_300Light',
 	},
 	heading: {
