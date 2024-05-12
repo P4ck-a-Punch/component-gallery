@@ -75,6 +75,7 @@ const dateWheelScaleFunction = (x: number) => {
 
 interface DateSelectorProps {
 	date: Date
+	setDate: (date: Date) => void
 }
 
 const daysInMonth = (year: number, month: number) =>
@@ -101,6 +102,7 @@ const DateSelector: React.FC<DateSelectorProps> = (
 				{props.date.toLocaleDateString('en-US', {
 					month: 'long',
 					year: 'numeric',
+					day: 'numeric',
 				})}
 			</Text>
 			<View style={selectorStyles.wheelRoot}>
@@ -110,6 +112,13 @@ const DateSelector: React.FC<DateSelectorProps> = (
 						options={dateArray.map(item => item.toString())}
 						onChange={index => {
 							setSelectedIndex(index)
+							props.setDate(
+								new Date(
+									props.date.getFullYear(),
+									props.date.getMonth(),
+									dateArray[index],
+								),
+							)
 						}}
 						selectedIndicatorStyle={selectorStyles.selectorIndicator}
 						itemTextStyle={selectorStyles.itemTextStyle}
@@ -137,7 +146,7 @@ const WorkoutSchedule: React.FC = () => {
 
 	return (
 		<Page title={'Schedule'}>
-			<DateSelector date={date} />
+			<DateSelector date={date} setDate={setDate} />
 			<CardContainer>
 				{getWorkoutCards(getThisDateWorkouts(workouts))}
 			</CardContainer>
