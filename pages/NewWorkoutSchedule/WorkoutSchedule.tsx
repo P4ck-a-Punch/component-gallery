@@ -100,7 +100,7 @@ const DateSelector: React.FC<DateSelectorProps> = (
 		<View style={selectorStyles.selectorRoot}>
 			<Text style={selectorStyles.dateText}>
 				{props.date.toLocaleDateString('en-US', {
-					month: 'long',
+					month: 'short',
 					year: 'numeric',
 					day: 'numeric',
 				})}
