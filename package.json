@@ -21,13 +21,17 @@
     "expo-google-fonts": "^0.0.0",
     "expo-splash-screen": "^0.27.4",
     "expo-status-bar": "~1.11.1",
+    "install": "^0.13.0",
+    "npm": "^10.7.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.73.6",
     "react-native-asset": "^2.1.1",
     "react-native-config": "^1.5.1",
     "react-native-gesture-handler": "^2.16.1",
+    "react-native-picker-horizontal": "^0.1.2",
     "react-native-web": "~0.19.6",
+    "react-native-wheely": "^0.6.0",
     "typescript": "^5.3.0"
   },
   "devDependencies": {
