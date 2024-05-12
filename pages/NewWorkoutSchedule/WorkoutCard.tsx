@@ -1,9 +1,9 @@
 import React from 'react'
-import Card from 'Componants/Card'
+import Card from 'Componants/CardDynHeading'
 import Tags from 'Componants/Tags'
 import { ExerciseLineItem } from 'types/ExerciseLineItem'
 import { UserWorkout } from 'types/UserWorkout'
-import { Text } from 'react-native'
+import { Text, StyleSheet, View } from 'react-native'
 import ExercisePeekList from './ExercisePeek'
 
 // Note that any single WorkoutCard component does not see
@@ -17,17 +17,25 @@ type WorkoutCardProps = {
 	exercisesPlanned: ExerciseLineItem[]
 }
 
-const styles = {
+const styles = StyleSheet.create({
 	time: {
 		fontSize: 16,
-		marginTop: 8,
+		marginBottom: 8,
+		fontFamily: 'IBMPlexSansCondensed_300Light',
 	},
-}
+	heading: {
+		fontSize: 24,
+		fontFamily: 'IBMPlexSansCondensed_500Medium',
+		alignItems: 'flex-start',
+		justifyContent: 'flex-start',
+		width: '100%',
+		marginBottom: 10,
+	},
+})
 
 // Extracts the time from a date string, or returns a default message
 // on failure.
 const timeFromDate = (dateString: string | undefined) => {
-	if (dateString === undefined) return 'Sometime today'
 	return dateString
 }
 
@@ -47,6 +55,21 @@ const getEquipment = (exercises: ExerciseLineItem[]) => {
 	return Array.from(new Set(equipment))
 }
 
+type WorkoutCardHeadingProps = {
+	workout: UserWorkout
+}
+
+const WorkoutCardHeading: React.FC<WorkoutCardHeadingProps> = (
+	props: WorkoutCardHeadingProps,
+) => {
+	return (
+		<View>
+			<Text style={styles.time}>{timeFromDate(props.workout.date)}</Text>
+			<Text style={styles.heading}>{props.workout.name}</Text>
+		</View>
+	)
+}
+
 /**
  * A card that displays information about a workout and its exercises,
  * displaying muscle groups targeted and equipment used as length-limited
@@ -57,8 +80,9 @@ const getEquipment = (exercises: ExerciseLineItem[]) => {
  * @param {ExerciseLineItem[]} props.exercisesPlanned The exercises to be performed.
  */
 const WorkoutCard = (props: WorkoutCardProps) => {
+	const heading = <WorkoutCardHeading workout={props.workout} />
 	return (
-		<Card heading={props.workout.name}>
+		<Card heading={heading}>
 			<Tags tags={getMuscleGroups(props.exercisesPlanned)} />
 			<Tags tags={getEquipment(props.exercisesPlanned)} />
 			<ExercisePeekList exercises={props.exercisesPlanned} />
