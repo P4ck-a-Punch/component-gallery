@@ -25,7 +25,7 @@ const dummyWorkouts: UserWorkout[] = [
 				reps: 10,
 			},
 		],
-		date: '2021-10-01',
+		date: '2024-05-25',
 		scheduling: {
 			type: 'weekly',
 			recur: '1',

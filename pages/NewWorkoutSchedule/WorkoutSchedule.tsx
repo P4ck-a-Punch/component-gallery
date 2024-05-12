@@ -133,9 +133,10 @@ const DateSelector: React.FC<DateSelectorProps> = (
 }
 
 // Filters the cache for workouts scheduled for the current date
-const getThisDateWorkouts = (workoutDataCache: UserWorkout[]) => {
+const getWorkoutsForDate = (workoutDataCache: UserWorkout[], date: Date) => {
 	// TODO: if cache miss, refetch from database
-	return workoutDataCache
+	const dateStr = date.toISOString().split('T')[0]
+	return workoutDataCache.filter(workout => workout.date === dateStr)
 }
 
 const WorkoutSchedule: React.FC = () => {
@@ -148,7 +149,7 @@ const WorkoutSchedule: React.FC = () => {
 		<Page title={'Schedule'}>
 			<DateSelector date={date} setDate={setDate} />
 			<CardContainer>
-				{getWorkoutCards(getThisDateWorkouts(workouts))}
+				{getWorkoutCards(getWorkoutsForDate(workouts, date))}
 			</CardContainer>
 		</Page>
 	)
