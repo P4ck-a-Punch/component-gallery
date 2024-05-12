@@ -30,7 +30,7 @@ const selectorStyles = StyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'center',
 		height: '100%',
-		width: '70%',
+		width: '65%',
 	},
 	rotate: {
 		transform: [{ rotate: '270deg' }],
@@ -42,7 +42,9 @@ const selectorStyles = StyleSheet.create({
 		fontSize: 20,
 		fontFamily: 'IBMPlexSansCondensed_300Light',
 	},
-	selectorContainer: {},
+	selectorContainer: {
+		width: '100%',
+	},
 	selectorRoot: {
 		flexDirection: 'row',
 		height: '7%',
@@ -53,35 +55,65 @@ const selectorStyles = StyleSheet.create({
 		paddingBottom: 12,
 	},
 	dateText: {
-		fontSize: 24,
+		fontSize: 26,
 		fontFamily: 'IBMPlexSansCondensed_300Light',
 		textAlignVertical: 'center',
-		width: 'auto',
+		width: '35%',
 	},
 })
+
+// Scale of dates in the wheel as a function of (unsigned) distance from the center.
+// See https://www.desmos.com/calculator/u0m44qh7xk for a visualization.
+//
+// NOTE: you have to reload the app via the Expo terminal (press r) to see effects
+// of these changes.
+const dateWheelScaleFunction = (x: number) => {
+	const a = 1.6
+	const b = 5.5
+	return 1 / (1 + Math.exp(a * (x - b)))
+}
+
+interface DateSelectorProps {
+	date: Date
+}
+
+const daysInMonth = (year: number, month: number) =>
+	new Date(year, month, 0).getDate()
 
 // A continuous date selecter. Holds an array that is the days-in-a-year sequence
 // and keeps track of the month. Once the picker wraps around the array, notes
 // the year change.
-const DateSelector = () => {
-	const testArray = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
+const DateSelector: React.FC<DateSelectorProps> = (
+	props: DateSelectorProps,
+) => {
+	const dateArray = Array.from(
+		{
+			length: daysInMonth(props.date.getFullYear(), props.date.getMonth() + 1),
+		},
+		(_, i) => i + 1,
+	)
 
-	const [selectedIndex, setSelectedIndex] = useState(testArray.length / 2)
+	const [selectedIndex, setSelectedIndex] = useState(dateArray.length / 2)
 
 	return (
 		<View style={selectorStyles.selectorRoot}>
-			<Text style={selectorStyles.dateText}>August 2022</Text>
+			<Text style={selectorStyles.dateText}>
+				{props.date.toLocaleDateString('en-US', {
+					month: 'long',
+					year: 'numeric',
+				})}
+			</Text>
 			<View style={selectorStyles.wheelRoot}>
 				<View style={selectorStyles.rotate}>
 					<WheelPicker
 						selectedIndex={selectedIndex}
-						options={testArray.map(item => item.toString())}
+						options={dateArray.map(item => item.toString())}
 						onChange={index => {
 							setSelectedIndex(index)
 						}}
 						selectedIndicatorStyle={selectorStyles.selectorIndicator}
 						itemTextStyle={selectorStyles.itemTextStyle}
-						scaleFunction={x => 1 / (1 + Math.exp(0.5 * (x - 6)))}
+						scaleFunction={dateWheelScaleFunction}
 						containerStyle={selectorStyles.selectorContainer}
 						decelerationRate='fast'
 					/>
@@ -101,9 +133,11 @@ const WorkoutSchedule: React.FC = () => {
 	// TODO: to silence unused warnings.
 	console.log(workouts)
 
+	const [date, setDate] = useState(new Date())
+
 	return (
 		<Page title={'Schedule'}>
-			<DateSelector />
+			<DateSelector date={date} />
 			<CardContainer>
 				{getWorkoutCards(getThisDateWorkouts(workouts))}
 			</CardContainer>
