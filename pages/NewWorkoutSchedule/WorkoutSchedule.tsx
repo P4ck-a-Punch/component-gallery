@@ -54,6 +54,8 @@ const DateSelector = () => {
 	const [selectedIndex, setSelectedIndex] = useState(0)
 
 	return (
+		// @ts-expect-error TS claims that no overload matches the call, but
+		// the style entries that cause this to happen are actually applied.
 		<View style={selectorStyles.selectorRoot}>
 			<View style={selectorStyles.rotate}>
 				<WheelPicker
