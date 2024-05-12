@@ -4,7 +4,7 @@ import CardContainer from 'Componants/CardContainer'
 import WorkoutCard from './WorkoutCard'
 import { UserWorkout } from 'types/UserWorkout'
 import { getExerciseLineItems, getWorkouts } from './WorkoutData'
-import { View, Vibration } from 'react-native'
+import { View } from 'react-native'
 import WheelPicker from 'react-native-wheely'
 
 // Information about the user's scheduled workouts, across a cache
