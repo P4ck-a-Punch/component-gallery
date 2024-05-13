@@ -1,6 +1,6 @@
 import React from 'react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
-// import WorkoutSchedule from 'pages/NewWorkoutSchedule/WorkoutSchedule'
+import WorkoutSchedule from 'pages/NewWorkoutSchedule/WorkoutSchedule'
 import ExerciseHistory from 'pages/NewExerciseHistory/ExerciseHistory'
 
 import {
