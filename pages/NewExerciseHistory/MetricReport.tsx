@@ -2,7 +2,6 @@ import getDataForUserForExercise from './ExerciseData'
 import TimeGraph from 'Componants/TimeGraph'
 import React from 'react'
 import Card from 'Componants/Card'
-import Line from 'react-native-svg-charts'
 import MultiSwitch from 'react-native-multiple-switch'
 
 const ranges = ["7d", "30d", "90d", "1y", "all"]
