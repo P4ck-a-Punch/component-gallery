@@ -33,7 +33,7 @@ const findStartDate = (date: string): Date => {
 
 // Gets the date that is both present in the data and is the first one chronologicaly 
 // before the start date
-const getPointJustBeforeStartDate = (data: TimeGraphData[], start: Date): TimeGraphData => {
+const getPointJustBeforeStartDate = (data: TimeGraphData[], start: Date): Optional<TimeGraphData> => {
 	const datesBeforeStart = data.filter((datum) => datum.date < start)
 	const datesBeforeStartSorted = datesBeforeStart.sort((a, b) => b.date.getTime() - a.date.getTime())
 	if (datesBeforeStartSorted.length === 0) {

@@ -6,11 +6,16 @@ import MultiSwitch from 'react-native-multiple-switch'
 
 const ranges = ["7d", "30d", "90d", "1y", "all"]
 
-const MetricReport = () => {
+type MetricReportProps = {
+	exerciseId: number,
+	metricId: number
+}
+
+const MetricReport = (props: MetricReportProps) => {
 
 	const [range, setRange] = React.useState(ranges[1])
 
-	const data = getDataForUserForExercise(1, 1, range)
+	const data = getDataForUserForExercise(props.exerciseId, props.metricId, range)
 
 	return (
 		<Card heading='Reps × Sets'>

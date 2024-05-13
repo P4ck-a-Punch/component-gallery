@@ -9,7 +9,7 @@ const ExerciseHistory = () => {
 		<Page title='Bicep Curls'>
 			<View style={{ paddingTop: 30 }}></View>
 			<CardContainer>
-				<MetricReport />
+				<MetricReport exerciseId={1} metricId={1} />
 			</CardContainer>
 		</Page>
 	)
