@@ -94,7 +94,7 @@ const DateSelector: React.FC<DateSelectorProps> = (
 		(_, i) => i + 1,
 	)
 
-	const [selectedIndex, setSelectedIndex] = useState(dateArray.length / 2)
+	const [selectedIndex, setSelectedIndex] = useState(Math.floor(dateArray.length / 2))
 
 	return (
 		<View style={selectorStyles.selectorRoot}>
