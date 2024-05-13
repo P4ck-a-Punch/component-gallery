@@ -15,7 +15,7 @@ const MetricReport = () => {
 
 	return (
 		<Card heading='Reps × Sets'>
-			<TimeGraph data={data} />
+			<TimeGraph data={data} dateRange={range} />
 			<MultiSwitch
 				items={ranges}
 				value={range}

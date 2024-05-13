@@ -10,6 +10,7 @@ type TimeGraphData = {
 
 type TimeGraphProps = {
 	data: TimeGraphData[]
+	dateRange: string
 }
 
 const averageValue = (data: TimeGraphData[]) => {
@@ -18,6 +19,28 @@ const averageValue = (data: TimeGraphData[]) => {
 		sum += datum.value
 	}
 	return sum / data.length
+}
+
+const getStartDate = (dateRange: string) => {
+	const today = new Date()
+	let startDate = new Date()
+	switch (dateRange) {
+		case '7d':
+			startDate.setDate(today.getDate() - 7)
+			break
+		case '30d':
+			startDate.setDate(today.getDate() - 30)
+			break
+		case '90d':
+			startDate.setDate(today.getDate() - 90)
+			break
+		case '1y':
+			startDate.setFullYear(today.getFullYear() - 1)
+			break
+		default:
+			startDate = new Date(0)
+	}
+	return startDate
 }
 
 /*
@@ -32,10 +55,15 @@ const TimeGraph = (props: TimeGraphProps) => {
 		<Path key={'line'} d={line} stroke={'rgb(134, 65, 244)'} fill={'none'} />
 	)
 
+	const startDate = props.dateRange != 'all' ? getStartDate(props.dateRange) : props.data[0].date
+
+	const dataContainsStart = props.data.some((datum) => datum.date.getTime() === startDate.getTime())
+
 	const todayMs = new Date().getTime()
 	const average = averageValue(props.data)
+	const dataToPlot: TimeGraphData[] = dataContainsStart ? props.data : [{ value: 0, date: startDate }, ...props.data]
 
-	const HorizontalLine = ({ y }) => (
+	const HorizontalLine = () => (
 		<Line
 			key={'zero-axis'}
 			x1={'0%'}
@@ -51,7 +79,7 @@ const TimeGraph = (props: TimeGraphProps) => {
 	const chart = (
 		<AreaChart
 			style={{ height: 200 }}
-			data={props.data}
+			data={dataToPlot}
 			contentInset={{ top: 20, bottom: 20 }}
 			yAccessor={({ item }) => item.value}
 			xAccessor={({ item }) => todayMs - item.date.getTime()}
@@ -60,8 +88,9 @@ const TimeGraph = (props: TimeGraphProps) => {
 		>
 			<Grid />
 			<Line />
+			<HorizontalLine />
 			<XAxis
-				data={props.data}
+				data={dataToPlot}
 				contentInset={{ left: 10, right: 10 }}
 				xAccessor={({ item }) => todayMs - item.date.getTime()}
 				formatLabel={(_, index) => index}
