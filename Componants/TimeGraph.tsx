@@ -100,7 +100,7 @@ const TimeGraph = (props: TimeGraphProps) => {
 	const daysInPast = getDaysInPast(props.dateRange)
 
 	const chart = (
-		<View style={{ width: "100%", height: "100%", flexDirection: "row", justifyContent: 'space-between' }}>
+		<View style={{ width: "auto", height: "auto", flexDirection: "row", justifyContent: 'space-between' }}>
 			<YAxis
 				data={dataToPlot}
 				contentInset={{ top: 10, bottom: 10 }}
@@ -114,7 +114,7 @@ const TimeGraph = (props: TimeGraphProps) => {
 				style={{ width: "10%" }}
 			/>
 			<AreaChart
-				style={{ height: '100%', width: '90%', paddingRight: 10 }}
+				style={{ height: 200, width: '90%', paddingRight: 10 }}
 				data={dataToPlot}
 				contentInset={{ top: 10, bottom: 10 }}
 				yAccessor={({ item }) => item.value}
@@ -135,7 +135,7 @@ const TimeGraph = (props: TimeGraphProps) => {
 	)
 
 	return (
-		<View style={{ height: "70%", width: '100%', marginTop: 5, marginBottom: 10 }}>
+		<View style={{ height: "auto", width: '100%', marginTop: 5, marginBottom: 10 }}>
 			{chart}
 		</View>
 	)
