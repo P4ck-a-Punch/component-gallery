@@ -70,7 +70,7 @@ const TimeGraph = (props: TimeGraphProps) => {
 	)
 
 	return (
-		<View style={{ height: 200, width: '100%', paddingVertical: 0 }}>
+		<View style={{ height: 200, width: '100%', marginTop: 5, marginBottom: 0 }}>
 			{chart}
 		</View>
 	)
