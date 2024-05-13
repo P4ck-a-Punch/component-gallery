@@ -1,32 +1,77 @@
 import React from 'react'
-import { LineChart, Grid, XAxis } from 'react-native-svg-charts'
+import { XAxis, AreaChart, Grid, Path } from 'react-native-svg-charts'
+import * as shape from 'd3-shape'
 import { View } from 'react-native'
+
+type TimeGraphData = {
+	value: number
+	date: Date
+}
+
+type TimeGraphProps = {
+	data: TimeGraphData[]
+}
+
+const averageValue = (data: TimeGraphData[]) => {
+	let sum = 0
+	for (const datum of data) {
+		sum += datum.value
+	}
+	return sum / data.length
+}
 
 /*
  * Plots a simple positive area graph with the given data
  * across the past n days, months, or years.
  */
-const TimeGraph = () => {
-	const data = [50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50, -20, -80]
+const TimeGraph = (props: TimeGraphProps) => {
+	// A JSON array of value-date pairs.
+
+	// @ts-expect-error - TODO: What type is line? What is the d prop?
+	const Line = ({ line }) => (
+		<Path key={'line'} d={line} stroke={'rgb(134, 65, 244)'} fill={'none'} />
+	)
+
+	const todayMs = new Date().getTime()
+	const average = averageValue(props.data)
+
+	const HorizontalLine = ({ y }) => (
+		<Line
+			key={'zero-axis'}
+			x1={'0%'}
+			x2={'100%'}
+			y1={average}
+			y2={average}
+			stroke={'grey'}
+			strokeDasharray={[4, 8]}
+			strokeWidth={2}
+		/>
+	)
+
+	const chart = (
+		<AreaChart
+			style={{ height: 200 }}
+			data={props.data}
+			contentInset={{ top: 20, bottom: 20 }}
+			yAccessor={({ item }) => item.value}
+			xAccessor={({ item }) => todayMs - item.date.getTime()}
+			curve={shape.curveLinear}
+			svg={{ fill: 'rgba(134, 65, 244, 0.2)' }}
+		>
+			<Grid />
+			<Line />
+			<XAxis
+				data={props.data}
+				contentInset={{ left: 10, right: 10 }}
+				xAccessor={({ item }) => todayMs - item.date.getTime()}
+				formatLabel={(_, index) => index}
+			/>
+		</AreaChart>
+	)
 
 	return (
-		<View style={{ height: 200, padding: 20 }}>
-			<LineChart
-				style={{ flex: 1 }}
-				data={data}
-				gridMin={0}
-				contentInset={{ top: 10, bottom: 10 }}
-				svg={{ stroke: 'rgb(134, 65, 244)' }}
-			>
-				<Grid />
-			</LineChart>
-			<XAxis
-				style={{ marginHorizontal: -10 }}
-				data={data}
-				formatLabel={(value, index) => index}
-				contentInset={{ left: 10, right: 10 }}
-				svg={{ fontSize: 10, fill: 'black' }}
-			/>
+		<View style={{ height: 200, width: '100%', paddingVertical: 0 }}>
+			{chart}
 		</View>
 	)
 }
