@@ -3,13 +3,32 @@ import TimeGraph from 'Componants/TimeGraph'
 import React from 'react'
 import Card from 'Componants/Card'
 import Line from 'react-native-svg-charts'
+import MultiSwitch from 'react-native-multiple-switch'
+
+const ranges = ["7d", "30d", "90d", "1y", "all"]
 
 const MetricReport = () => {
-	const data = getDataForUserForExercise(1, 1)
+
+	const [range, setRange] = React.useState(ranges[1])
+
+	const data = getDataForUserForExercise(1, 1, range)
 
 	return (
 		<Card heading='Reps × Sets'>
 			<TimeGraph data={data} />
+			<MultiSwitch
+				items={ranges}
+				value={range}
+				onChange={setRange}
+				containerStyle={{
+					backgroundColor: '#fff'
+				}}
+				sliderStyle={{
+					backgroundColor: 'transparent',
+					borderWidth: 1,
+				}}
+				textStyle={{
+				}} />
 		</Card>
 	)
 }

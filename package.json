@@ -31,6 +31,7 @@
     "react-native-asset": "^2.1.1",
     "react-native-config": "^1.5.1",
     "react-native-gesture-handler": "^2.16.1",
+    "react-native-multiple-switch": "^1.1.2",
     "react-native-picker-horizontal": "^0.1.2",
     "react-native-svg": "^15.2.0",
     "react-native-svg-charts": "^5.4.0",

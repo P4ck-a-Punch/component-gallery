@@ -13,10 +13,12 @@ const dummyData = [
 const getDataForUserForExercise = (
 	exerciseId: number,
 	metricId: number,
+	dateRange: string = '30d'
 ): TimeGraphData[] => {
 	// TODO: DynamoDB query goes here. Note that it should also take the
 	// user ID, which should be globally set in the app.
 	console.log(`Getting data for exercise ${exerciseId} and metric ${metricId}`)
+	console.log(`Date range: ${dateRange}`)
 	return dummyData
 }
 
