@@ -20,18 +20,10 @@ const Card = (props: CardProps) => {
 	return !fontsLoaded ? (
 		<AppLoading />
 	) : (
-		// 		<TouchableHighlight
-		// 			activeOpacity={0.6}
-		// 			underlayColor={'pink'}
-		// 			onPress={() => true}
-		// 			style={cardStyle.highlight}
-		// 			disallowInterruption={true}
-		// 		>
 		<View style={cardStyle.card}>
 			{props.heading}
 			{props.children}
 		</View>
-		//		</TouchableHighlight>
 	)
 }
 
