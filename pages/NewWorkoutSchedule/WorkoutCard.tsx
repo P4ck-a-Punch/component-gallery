@@ -1,5 +1,5 @@
 import React from 'react'
-import Card from 'Componants/CardDynHeading'
+import Card from 'Componants/Card'
 import Tags from 'Componants/Tags'
 import { ExerciseLineItem } from 'types/ExerciseLineItem'
 import { UserWorkout } from 'types/UserWorkout'

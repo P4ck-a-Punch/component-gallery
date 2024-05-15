@@ -1,19 +1,24 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-import { IBMPlexSansCondensed_500Medium } from '@expo-google-fonts/ibm-plex-sans-condensed'
-import { useFonts } from 'expo-font'
-import AppLoading from 'expo-app-loading'
+import { View, StyleSheet, Text } from 'react-native'
 
 type CardProps = {
 	children: React.ReactNode
-	heading: string
+	heading: React.ReactNode | String
 }
 
 const Card = (props: CardProps) => {
-	<View style={cardStyle.card}>
-		<Text style={cardStyle.heading}>{props.heading}</Text>
-		{props.children}
-	</View>
+
+	// Wrap the heading in a Text component if it is a string
+	return (typeof props.heading) === 'string' ?
+		<View style={cardStyle.card}>
+			{props.heading}
+			{props.children}
+		</View>
+		:
+		<View style={cardStyle.card}>
+			<Text style={cardStyle.heading}>{props.heading}</Text>
+			{props.children}
+		</View>
 }
 
 const cardStyle = StyleSheet.create({
