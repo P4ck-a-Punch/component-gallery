@@ -28,7 +28,6 @@ const cardStyle = StyleSheet.create({
 		alignItems: 'flex-start',
 		justifyContent: 'flex-start',
 		width: '100%',
-		marginBottom: 10,
 	},
 	card: {
 		width: '100%',
