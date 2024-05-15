@@ -10,20 +10,10 @@ type CardProps = {
 }
 
 const Card = (props: CardProps) => {
-	const [fontsLoaded, fontsError] = useFonts({
-		IBMPlexSansCondensed_500Medium,
-	})
-
-	console.log(fontsError)
-
-	return !fontsLoaded ? (
-		<AppLoading />
-	) : (
-		<View style={cardStyle.card}>
-			<Text style={cardStyle.heading}>{props.heading}</Text>
-			{props.children}
-		</View>
-	)
+	<View style={cardStyle.card}>
+		<Text style={cardStyle.heading}>{props.heading}</Text>
+		{props.children}
+	</View>
 }
 
 const cardStyle = StyleSheet.create({
