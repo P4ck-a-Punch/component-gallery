@@ -11,12 +11,12 @@ const Card = (props: CardProps) => {
 	// Wrap the heading in a Text component if it is a string
 	return (typeof props.heading) === 'string' ?
 		<View style={cardStyle.card}>
-			{props.heading}
+			<Text style={cardStyle.heading}>{props.heading}</Text>
 			{props.children}
 		</View>
 		:
 		<View style={cardStyle.card}>
-			<Text style={cardStyle.heading}>{props.heading}</Text>
+			{props.heading}
 			{props.children}
 		</View>
 }
