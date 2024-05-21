@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from 'react-native'
 
 type CardProps = {
 	children: React.ReactNode
-	heading: React.ReactNode | String
+	heading: React.ReactNode | string
 }
 
 const Card = (props: CardProps) => {
