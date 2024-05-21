@@ -33,7 +33,7 @@
     "react-native-gesture-handler": "^2.16.1",
     "react-native-multiple-switch": "^1.1.2",
     "react-native-picker-horizontal": "^0.1.2",
-    "react-native-svg": "^15.2.0",
+    "react-native-svg": "^15.3.0",
     "react-native-svg-charts": "^5.4.0",
     "react-native-web": "~0.19.6",
     "react-native-wheely": "^0.6.0",
