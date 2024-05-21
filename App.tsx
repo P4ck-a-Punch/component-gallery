@@ -1,6 +1,8 @@
 import React from 'react'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import WorkoutSchedule from 'pages/NewWorkoutSchedule/WorkoutSchedule'
+import ExerciseHistory from 'pages/NewExerciseHistory/ExerciseHistory'
+
 import {
 	useFonts,
 	IBMPlexSansCondensed_100Thin,
@@ -44,7 +46,7 @@ const App = () => {
 
 	return (
 		<GestureHandlerRootView>
-			<WorkoutSchedule />
+			<ExerciseHistory exerciseId={1} />
 		</GestureHandlerRootView>
 	)
 }
