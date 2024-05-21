@@ -1,38 +1,24 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
-import { TouchableHighlight } from 'react-native-gesture-handler'
-import { IBMPlexSansCondensed_500Medium } from '@expo-google-fonts/ibm-plex-sans-condensed'
-import { useFonts } from 'expo-font'
-import AppLoading from 'expo-app-loading'
+import { View, StyleSheet, Text } from 'react-native'
 
 type CardProps = {
 	children: React.ReactNode
-	heading: string
+	heading: React.ReactNode | String
 }
 
 const Card = (props: CardProps) => {
-	const [fontsLoaded, fontsError] = useFonts({
-		IBMPlexSansCondensed_500Medium,
-	})
 
-	console.log(fontsError)
-
-	return !fontsLoaded ? (
-		<AppLoading />
-	) : (
-		// 		<TouchableHighlight
-		// 			activeOpacity={0.6}
-		// 			underlayColor={'pink'}
-		// 			onPress={() => true}
-		// 			style={cardStyle.highlight}
-		// 			disallowInterruption={true}
-		// 		>
+	// Wrap the heading in a Text component if it is a string
+	return (typeof props.heading) === 'string' ?
+		<View style={cardStyle.card}>
+			{props.heading}
+			{props.children}
+		</View>
+		:
 		<View style={cardStyle.card}>
 			<Text style={cardStyle.heading}>{props.heading}</Text>
 			{props.children}
 		</View>
-		//		</TouchableHighlight>
-	)
 }
 
 const cardStyle = StyleSheet.create({
@@ -42,7 +28,6 @@ const cardStyle = StyleSheet.create({
 		alignItems: 'flex-start',
 		justifyContent: 'flex-start',
 		width: '100%',
-		marginBottom: 10,
 	},
 	card: {
 		width: '100%',
